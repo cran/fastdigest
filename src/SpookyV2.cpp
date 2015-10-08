@@ -12,7 +12,8 @@
 #include <memory.h>
 #include "SpookyV2.h"
 
-#define ALLOW_UNALIGNED_READS 1
+// #define ALLOW_UNALIGNED_READS 1
+#define ALLOW_UNALIGNED_READS 0
 
 //
 // short hash ... it could be used on any message, 

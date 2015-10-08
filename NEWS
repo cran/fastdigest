@@ -4,3 +4,6 @@ Miscellaneous Changes
 Changes in version 0.6-1
 Miscellaneous Changes
 	      * Typo fixes in DESCRIPTION file
+Changes in version 0.6-3
+Bugfixes
+	      * Disallow unaligned reads via macro in Jenkins' c++ code in line with CRAN policy.
