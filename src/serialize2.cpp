@@ -2,16 +2,10 @@
 #include <config.h>
 #endif
 
-
-#define USE_RINTERNALS 1
+#define USE_RINTERNALS
 #include <R.h>
 #include <Rinternals.h>
 #include <R_ext/Rdynload.h>
-#define class class_name
-#define private private_ptr
-#include <R_ext/Connections.h>
-#undef class
-#undef private
 
 #include "SpookyV2.h"
 
@@ -79,37 +73,6 @@ static SEXP R_spookydigest(SEXP s, SEXP fun)
     UNPROTECT(1);
     return ans;
 }
-
-
-/* copied from R sources, serialize.c */
-
-#define BCONBUFSIZ 4096
-
-typedef struct bconbuf_st {
-    Rconnection con;
-    int count;
-    unsigned char buf[BCONBUFSIZ];
-} *bconbuf_t;
-
-/*end copied*/
-/*
-
-static SEXP R_debugdigest(SEXP s, SEXP fun, SEXP icon )
-{
-    struct R_outpstream_st out;
-    R_pstream_format_t type = R_pstream_binary_format;
-    struct bconbuf_st bbs;
-    Rconnection con = getConnection(asInteger(icon));
-    SEXP (*hook)(SEXP, SEXP);
-    int version = 0; //R_DefaultSerializeVersion?;
-    hook = fun != R_NilValue ? CallHook : NULL;
-    InitBConOutPStream(&out, &bbs, con, R_pstream_binary_format, version, hook, fun);
-    R_Serialize3(s, &out);
-    flush_bcon_buffer(&bbs);
-    return R_NilValue;
-}
-
-*/
 
 static R_CallMethodDef callMethods[]  = {
   {"R_fastdigest", (DL_FUNC) &R_spookydigest, 2},

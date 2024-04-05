@@ -17,19 +17,12 @@
 ##' @references Jenkins, B. (2012). SpookyHash: a 128-bit noncryptographic hash.
 ##' http://burtleburtle.net/bob/hash/spooky.html.
 ##'
-##' @examples
-##' x = rnorm(100)
-##' h = fastdigest(x)
-##' y = x
-##' ## force dup
-##' y[100] = 1
-##' h2 = fastdigest(y)
-##' identical(h, h2) #FALSE
-##' y[100] = x[100]
-##' h3 = fastdigest(y)
-##' identical(h, h3) # TRUE
 ##' @seealso \code{\link{serialize}}
 ##' @export
+##' @examples
+##' fastdigest(1:5)
+##' fastdigest(list("what", 1:2))
+##' 
 fastdigest = function(obj, ref_serializer = NULL)
 {
     res = paste(.Call(R_fastdigest, obj, ref_serializer, PACKAGE="fastdigest"),
